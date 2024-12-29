@@ -59,3 +59,18 @@ def evaluate_keras_cnn(model, X_val, y_val):
     precision, recall, f1, _ = precision_recall_fscore_support(y_val, predicted_classes, average='weighted')
     
     return accuracy, cm, precision, recall, f1
+
+def evaluate_pytorch_model(model, test_loader):
+    model.eval()
+    test_loss = 0
+    correct = 0
+    with torch.no_grad():
+        for data, target in test_loader:
+            output = model(data)
+            loss = nn.functional.cross_entropy(output, target)
+            test_loss += loss.item() * data.size(0)
+            pred = output.argmax(dim=1, keepdim=True)
+            correct += pred.eq(target.view_as(pred)).sum().item()
+    test_loss /= len(test_loader.dataset)
+    accuracy = 100. * correct / len(test_loader.dataset)
+    return test_loss, accuracy
