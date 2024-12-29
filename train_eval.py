@@ -18,7 +18,7 @@ def train_pytorch_model(model, train_loader, criterion, optimizer, epochs):
             optimizer.step()
 
 def evaluate_model(model, test_loader):
-    model.eval()  # Set the model to evaluation mode
+    model.eval()  
     total_loss = 0
     correct = 0
 
@@ -60,17 +60,3 @@ def evaluate_keras_cnn(model, X_val, y_val):
     
     return accuracy, cm, precision, recall, f1
 
-def evaluate_pytorch_model(model, test_loader):
-    model.eval()
-    test_loss = 0
-    correct = 0
-    with torch.no_grad():
-        for data, target in test_loader:
-            output = model(data)
-            loss = nn.functional.cross_entropy(output, target)
-            test_loss += loss.item() * data.size(0)
-            pred = output.argmax(dim=1, keepdim=True)
-            correct += pred.eq(target.view_as(pred)).sum().item()
-    test_loss /= len(test_loader.dataset)
-    accuracy = 100. * correct / len(test_loader.dataset)
-    return test_loss, accuracy
