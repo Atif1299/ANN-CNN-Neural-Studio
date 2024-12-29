@@ -29,8 +29,8 @@ The project is organized into the following Python files:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [your_repository_link]
-    cd [your_repository_name]
+    git clone https://github.com/Atif1299/ANN-CNN-Neural-Studio.git
+    cd ANN-CNN-Neural-Studio
     ```
 2.  **Install the required libraries:**
 
