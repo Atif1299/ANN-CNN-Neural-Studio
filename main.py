@@ -2,7 +2,7 @@ import time
 from data_loader import load_pytorch_dataset, load_keras_dataset, load_regression_dataset, load_classification_data
 from pytorch_models import RegressionANN, ClassificationANN
 from keras_models import create_keras_cnn
-from train_eval import train_pytorch_model, evaluate_pytorch_model, evaluate_keras_cnn, train_keras_cnn
+from train_eval import train_pytorch_model, evaluate_model, evaluate_keras_cnn, train_keras_cnn
 from visualization import plot_learning_curves, plot_loss_curves
 from tensorflow.keras.datasets import cifar100
 import torch
@@ -41,7 +41,7 @@ def main():
     optimizer = torch.optim.Adam(class_model.parameters(), lr=class_lr)
     criterion = torch.nn.CrossEntropyLoss()
     train_pytorch_model(class_model, train_loader, criterion, optimizer, epochs=class_epochs)
-    loss, accuracy = evaluate_pytorch_model(class_model, val_loader_class)
+    loss, accuracy = evaluate_model(class_model, val_loader_class)
     print(f"PyTorch ANN Classification Results - Loss: {loss:.4f}, Accuracy: {accuracy:.2f}%\n")
 
     print("Starting Keras CNN Classification Training on CIFAR-100...")
