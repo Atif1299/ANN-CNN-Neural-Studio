@@ -4,11 +4,12 @@ from tensorflow.keras.datasets import cifar100, fashion_mnist
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from torch.utils.data import DataLoader
 import numpy as np
 
 
-data_path = "C:\\Users\\user\\OneDrive\\Desktop\\Grapes\\Final Version\\train"
-data_path1 = "C:\\Users\\user\\OneDrive\\Desktop\\Grapes\\Final Version\\test"
+data_path = "C:\\Users\\talha\\AI lab tasks\\data\\cifar10\\train"
+data_path1= "C:\\Users\\talha\\AI lab tasks\\data\\cifar10\\test"
 
 
 
@@ -17,8 +18,8 @@ def load_pytorch_dataset(dataset_name):
         transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
         train_dataset = datasets.FashionMNIST(root=data_path, train=True, download=True, transform=transform)
         test_dataset = datasets.FashionMNIST(root=data_path1, train=False, download=True, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+    test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
     return train_loader, test_loader
 
 def load_keras_dataset(dataset_name):
@@ -42,6 +43,6 @@ def load_classification_data(batch_size=64, dataset='CIFAR100'):
         train_dataset = datasets.CIFAR100(root=data_path, train=True, download=True, transform=transform)
         test_dataset = datasets.CIFAR100(root=data_path1, train=False, download=True, transform=transform)
     
-        train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-        val_loader = torch.utils.data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        val_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
     return train_loader, val_loader
