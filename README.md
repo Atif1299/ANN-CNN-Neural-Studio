@@ -1,4 +1,4 @@
-# Comparative Analysis of Machine Learning Models
+# Comparative Analysis of Deep Learning Models
 
 ## Project Overview
 
