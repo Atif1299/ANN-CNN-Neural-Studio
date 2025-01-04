@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project compares machine learning models for regression and classification using PyTorch and Keras. It includes PyTorch ANNs for both regression and classification, and a Keras CNN for image classification.
+This project compares Deep learning models for regression and classification using PyTorch and Keras. It includes PyTorch ANNs for both regression and classification, and a Keras CNN for image classification.
 
 ## Project Structure
 
